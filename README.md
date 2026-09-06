@@ -2,7 +2,7 @@
 
 > **Zero-Knowledge Private Real-Time Encrypted Messaging**
 
-🌐 **Live Application Link**: [https://zerotrace.onrender.com](https://zerotrace.onrender.com)
+🌐 **Live Application Link**: [https://zerotrace-chat.onrender.com](https://zerotrace-chat.onrender.com)
 
 **ZeroTrace** is a production-quality, zero-knowledge, real-time private messaging application. It allows two users to establish ephemeral, end-to-end encrypted chat rooms via QR codes or invite links without server access to plaintext messages or encryption keys.
 
