@@ -1,0 +1,35 @@
+{
+  "name": "zerotrace",
+  "version": "1.0.0",
+  "description": "ZeroTrace - Zero-Knowledge Private Encrypted Chat using QR codes and Web Crypto API",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js"
+  },
+  "keywords": [
+    "chat",
+    "encryption",
+    "web-crypto-api",
+    "socket.io",
+    "qr-code",
+    "express",
+    "privacy"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.3.1",
+    "helmet": "^7.1.0",
+    "qrcode": "^1.5.3",
+    "socket.io": "^4.7.5",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "socket.io-client": "^4.8.3"
+  }
+}

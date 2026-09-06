@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZeroTrace - Encrypted Private Room</title>
+  <meta name="description" content="ZeroTrace End-to-End Encrypted Private Real-Time Chat Room">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body style="padding: 0; justify-content: center; height: 100vh;">
+
+  <div class="chat-wrapper">
+    <!-- Chat Header -->
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <a href="/" class="btn btn-secondary btn-sm" style="width: auto; padding: 6px 10px;" title="Leave Room">
+          ← Exit
+        </a>
+        <div>
+          <div class="room-title" id="room-title">🛡️ ZeroTrace Room</div>
+          <div style="font-size: 11px; color: var(--text-dim); font-family: monospace;" id="room-id-display">
+            Room ID: loading...
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="security-badge" style="margin-top: 0; padding: 4px 10px; font-size: 12px;">
+          <span>🔒</span> <span>Encrypted</span>
+        </div>
+        <div class="status-badge">
+          <span class="status-dot" id="status-dot"></span>
+          <span id="status-text">Connecting...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Identity & Room Controls Bar -->
+    <div class="user-bar">
+      <div class="user-name-edit">
+        <span>Display Name:</span>
+        <input type="text" id="username-input" class="user-name-input" title="Click to edit display name" maxlength="32">
+        <span style="font-size: 12px; color: var(--text-dim);">✏️</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button id="privacy-toggle-btn" class="privacy-toggle-btn active" title="Touch & Hold to reveal messages on mobile">
+          <span>🛡️</span> <span>Hold-to-Reveal ON</span>
+        </button>
+        <span id="user-count-display">Users: 1/2</span>
+        <button id="show-qr-btn" class="btn btn-secondary btn-sm" style="width: auto; padding: 4px 10px;">
+          <span>📱</span> Share QR
+        </button>
+      </div>
+    </div>
+
+    <!-- Chat Messages Stream -->
+    <div class="messages-container" id="messages-container">
+      <div class="system-message">
+        🔒 End-to-End Encryption Initialized. Messages are encrypted in your browser with AES-256-GCM.
+      </div>
+    </div>
+
+    <!-- Typing Indicator -->
+    <div class="typing-indicator" id="typing-indicator">
+      <div class="typing-dots">
+        <span></span><span></span><span></span>
+      </div>
+      <span id="typing-text">Someone is typing...</span>
+    </div>
+
+    <!-- Chat Input Form -->
+    <form id="chat-form" class="chat-input-bar">
+      <textarea 
+        id="message-input" 
+        class="chat-input" 
+        placeholder="Type a secure message... (Enter to send, Shift+Enter for newline)"
+        rows="1"
+        required
+      ></textarea>
+      <button type="submit" id="send-btn" class="send-btn" title="Send Message">
+        ➤
+      </button>
+    </form>
+  </div>
+
+  <!-- QR Code Re-Share Modal -->
+  <div id="qr-modal-overlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(8px);">
+    <div class="card" style="max-width: 440px; width: 90%;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <h3 style="font-size: 18px; font-weight: 700;">ZeroTrace Room Invite QR</h3>
+        <button id="close-qr-modal" class="btn btn-secondary btn-sm" style="width: auto; padding: 4px 8px;">✕</button>
+      </div>
+      <div class="qr-box" style="margin: 8px auto;">
+        <canvas id="chat-qr-canvas"></canvas>
+      </div>
+      <div class="invite-link-container">
+        <input type="text" id="chat-invite-input" class="form-input invite-link-input" readonly>
+        <button id="chat-copy-link-btn" class="btn btn-secondary btn-sm" style="width: auto;">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy Protection Warning Overlay -->
+  <div id="privacy-overlay" class="privacy-warning-overlay">
+    <div style="font-size: 48px;">🛡️</div>
+    <div>Screenshot / Screen Capture Protected</div>
+    <div style="font-size: 14px; font-weight: 400; color: var(--text-muted); max-width: 380px;">
+      ZeroTrace protects private conversations. Screen content is blurred when taking screenshots or switching apps.
+    </div>
+  </div>
+
+  <!-- Socket.IO & App Scripts -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/lib/qrcode.min.js"></script>
+  <script src="/js/crypto.js"></script>
+  <script src="/js/chat.js"></script>
+</body>
+</html>

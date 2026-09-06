@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZeroTrace - Zero-Knowledge Private Encrypted Messaging</title>
+  <meta name="description" content="ZeroTrace is a zero-knowledge private real-time chat application with browser-side AES-256-GCM encryption and QR code access.">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="brand-header">
+        <div class="brand-logo">🛡️</div>
+        <h1 class="brand-title">ZeroTrace</h1>
+        <p class="brand-subtitle">Zero trace. Zero knowledge. Encrypted in your browser.</p>
+        <div class="security-badge">
+          <span>🔒</span>
+          <span>AES-256-GCM Web Crypto</span>
+        </div>
+      </div>
+
+      <!-- Action Panel -->
+      <div id="action-panel">
+        <div class="form-group">
+          <button id="create-room-btn" class="btn btn-primary">
+            <span>➕</span> Create Private Room
+          </button>
+        </div>
+
+        <div style="text-align: center; margin: 16px 0; color: var(--text-dim); font-size: 13px;">
+          ─── OR JOIN EXISTING ROOM ───
+        </div>
+
+        <form id="join-form">
+          <div class="form-group">
+            <label class="form-label" for="join-input">Have an Invite Link or Room ID?</label>
+            <input type="text" id="join-input" class="form-input" placeholder="Paste link or Room ID here..." required>
+          </div>
+          <button type="submit" class="btn btn-secondary">
+            <span>🔑</span> Join Room
+          </button>
+        </form>
+      </div>
+
+      <!-- QR Code & Room Created Display Modal -->
+      <div id="qr-modal" class="qr-modal">
+        <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 4px;">Your Private Room is Ready</h2>
+        <p style="font-size: 14px; color: var(--text-muted);">Scan this QR code to join on mobile or share the invite link.</p>
+        
+        <div class="qr-box">
+          <canvas id="qr-canvas"></canvas>
+        </div>
+
+        <p style="font-size: 12px; color: var(--success); font-weight: 500;">
+          🔒 Encryption key included in link hash fragment (#KEY)
+        </p>
+
+        <div class="invite-link-container">
+          <input type="text" id="invite-link-input" class="form-input invite-link-input" readonly>
+          <button id="copy-link-btn" class="btn btn-secondary btn-sm" style="width: auto;">
+            Copy
+          </button>
+        </div>
+
+        <div style="display: flex; gap: 10px; width: 100%; margin-top: 16px;">
+          <button id="share-link-btn" class="btn btn-secondary" style="flex: 1;">
+            <span>📲</span> Share
+          </button>
+          <button id="enter-room-btn" class="btn btn-primary" style="flex: 1;">
+            <span>💬</span> Enter Room
+          </button>
+        </div>
+
+        <p style="font-size: 12px; color: var(--text-dim); margin-top: 16px;">
+          Notice: Rooms automatically expire when inactive or empty. Max capacity: 2 users.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/js/lib/qrcode.min.js"></script>
+  <script src="/js/crypto.js"></script>
+  <script src="/js/index.js"></script>
+</body>
+</html>
